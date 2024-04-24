@@ -8,6 +8,21 @@
 \date{\today}
 % Packages
 \usepackage{amsmath}
+\usepackage{comment}
+
+% Martin comment
+\begin{comment}
+    https://uq-berlin.slack.com/archives/D0168AT80RY/p1713873401234819
+    I had a look at the document and would give you some impressions just as they are crossing my mind:
+    - It's good that you try to provide an overview of the foundations of generative models, in particular diffusion and then also tensor networks. This is a central initial task.
+    - However, there is lots of text and topics and it appears that it is not focused on what you want to achieve. Moreover, while there are more mathematical details, the topics are only described in a rather shallow overview style.
+    - I have doubts about the idea to combine TN and NN since then two functionals have to be optimised, introducing additional complexity and parameters for training.
+    - If the plan is to use TTs in DDPM (which is absolutely worth a shot), this has to be described (in a 5-10 pages research plan, not an overview document) in full detail but only what is required for the new method. Goals, structure, possible analytical results, algorithms etc. etc.
+    - Not sure about the numerical experiments. At first glance, it seems TT didn't perform too well and then running third party code is good to learn but insights are limited imo.
+    - My impression is that you would have to spend much more time on learning TT algorithms for optimisation and experiment with that a lot to see opportunities and to alleviate upcoming problems. Things won't just work with existing things. But then, if your research is supposed to be rather practical, a lot of effort has to be invested in the algorithms. You can ask other students from the group, who all do analysis and numerics. If analysis is limited, this would have to be compensated by work on new methods.
+    - It is somewhat unclear to me how TTDE can be used with DDPM since it reconstructs a stationary density, not a measure transport. But you might have an idea about that.
+\end{comment}
+
 
 % Document
 \begin{document}
