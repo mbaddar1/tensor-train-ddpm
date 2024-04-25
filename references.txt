@@ -17,4 +17,12 @@ https://openreview.net/pdf?id=wLe1bG93yc
 Convergence of score-based generative modeling for general data distributions
 https://proceedings.mlr.press/v201/lee23a/lee23a.pdf
 
+====
+Tensor Train Optimization Resources
+---------
+On the closedness of the TT format: http://link.springer.com/10.1007/s00791-012-0183-y
+The manifold of fixed TT-ranks tensors: https://link.springer.com/article/10.1007/s00211-011-0419-7
+On the convergence of the ALS algorithm: http://epubs.siam.org/doi/10.1137/110857520 and http://arxiv.org/abs/1506.00062
+Riemannian Optimization for TT: http://epubs.siam.org/doi/10.1137/15M1010506
+
 
