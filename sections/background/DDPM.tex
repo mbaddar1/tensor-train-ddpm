@@ -1,0 +1,37 @@
+%! Author = mbaddar
+%! Date = 4/25/24
+
+% Preamble
+\documentclass[11pt]{article}
+\usepackage{amsfonts}
+
+% Packages
+
+
+% Document
+\begin{document}
+    DDPM models are one of the state-of-the-art generative models \cite{ho2020denoising}.
+    Given a random variable $\mathbf{x} \in \mathbb{R}^{D} $ where the log-likelihood function
+    $\mathbf{x} \in p_{\theta}(\mathbf{x})$ should be maximized.\par
+
+    In DDPM, the training happens in two phases:
+
+    \paragraph{Forward Phase}
+    In this phase, a set of intermediate latent variables are generated $\mathbf{x}_t \quad t={0,1,2,..,T}$, where
+    $\mathbf{x}_t$is the input data and $\mathbf{x}_T \sim \mathcal{N}(\mathbf{0},\mathbf{I})
+    \quad \mathbf{0} \in \mathbb{R}^{D}, \mathbf{I} \in \mathbb{R}^{D \times D}$.\par
+    Given the following set of constants:
+
+
+    \begin{equation}
+        \begin{aligned}
+            \beta_t &, \quad \leq \beta_t \leq 1 \\
+            \alpha_t &= 1-\beta_t \\
+            \bar{\alpha}_t &= \prod_{i=1}^{T} \alpha_i \\
+        \end{aligned}
+        \label{eq:ddpm-constants}
+    \end{equation}
+
+    \paragraph{Backward Phase}
+
+\end{document}

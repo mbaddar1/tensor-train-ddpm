@@ -7,6 +7,7 @@
 \author{M. Baddar , M. Eigel}
 \date{\today}
 % Packages
+\usepackage{amsmath}
 \usepackage{comment}
 \usepackage{subfiles}
 % Martin comment
@@ -27,15 +28,19 @@
 \begin{document}
     \maketitle
 
-
     \section{Abstract}\label{sec:abstract}
     \subfile{sections/abstract}
 
-
+    %%%
     \section{Background}\label{sec:background}
-    \subfile{sections/background}
 
+    \subsection{Denoising Diffusion Probabilisitce Models (DDPM)}\label{subsec:ddpm}
+    \subfile{sections/background/DDPM.tex}
 
+    \subsection{Tensor-Trains}\label{subsec:tensor-trains}
+    \subsection{Tensor-Train optimization}\label{subsec:tensor-train-optimization}
+
+    %%%
     \section{Model}\label{sec:proposed-model}
 
     \subsection{Architecture}\label{subsec:architecture}
@@ -44,13 +49,25 @@
     \subsection{Optimization}\label{subsec:optimization}
     \subfile{sections/model/opt.tex}
 
-
+    %%%
     \section{Experiments}\label{sec:experiments}
 
-    \subsection{Method}\label{subsec:method}
-    \subfile{sections/experiments/method.tex}
+    \subsection{Plan}\label{subsec:plan}
+    \subfile{sections/experiments/plan.tex}
+
+    \subsection{Analysis of Gradient Descent Optimization with Neural Networks Model}
+    \label{subsec:analysis-of-gradient-descent-optimization-with-neural-networks-model}
+
+    \subsection{Optimization with Gradient Descent for Tensor-Train Model}\label{subsec:optimization-with-gradient-descent}
+    \subfile{sections/experiments/tt_gd.tex}
+
+    \subsection{Optimization with Alternating Linear Scheme for Tensor-Train Model}\label{subsec:optimization-with-alternating-linear-scheme}
+    \subfile{sections/experiments/tt_als.tex}
+
+    \subsection{Optimization with Riemannian Gradient Descent for Tensor-Train Model}\label{subsec:optimization-with-riemannian-gradient-descent}
+    \subfile{sections/experiments/tt_ro.tex}
 
     \subsection{Results}\label{subsec:results}
     \subfile{sections/experiments/results.tex}
-
+\bibliography{ref}
 \end{document}

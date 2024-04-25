@@ -1,0 +1,20 @@
+LOSS LANDSCAPES ARE ALL YOU NEED: NEURAL NETWORK GENERALIZATION CAN BE EXPLAINED WITHOUT THE IMPLICIT BIAS OF GRADIENT DESCENT
+https://openreview.net/pdf?id=QC10RmRbZy9
+
+OPTIMIZATION METHODS ON RIEMANNIAN MANIFOLDS AND THEIR APPLICATION TO SHAPE SPACE
+https://www.uni-muenster.de/AMM/num/wirth/files/RiWi12.pdf
+"Even if an embedding is known, one might hope that a
+Riemannian optimization method performs more efficiently since it exploits the underlying geometric structure of the
+manifold. For this purpose, various methods have been devised, from simple gradient descent on manifolds [25] to
+sophisticated trust region methods [5]."
+
+Visualizing the Loss Landscape of Neural Nets
+https://proceedings.neurips.cc/paper_files/paper/2018/file/a41b3bb3e6b050b6c9067c67f663b915-Paper.pdf
+
+A Note on the Convergence of Denoising Diffusion Probabilistic Models
+https://openreview.net/pdf?id=wLe1bG93yc
+
+Convergence of score-based generative modeling for general data distributions
+https://proceedings.mlr.press/v201/lee23a/lee23a.pdf
+
+
