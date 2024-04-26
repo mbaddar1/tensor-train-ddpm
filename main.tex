@@ -7,6 +7,8 @@
 \author{M. Baddar , M. Eigel}
 \date{\today}
 % Packages
+\usepackage{natbib}
+\bibliographystyle{alpha}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{xcolor}
@@ -40,8 +42,11 @@
     \subsection{Denoising Diffusion Probabilisitce Models (DDPM)}\label{subsec:ddpm}
     \subfile{sections/background/DDPM.tex}
 
-    \subsection{Tensor-Trains}\label{subsec:tensor-trains}
-    \subsection{Tensor-Train optimization}\label{subsec:tensor-train-optimization}
+    \subsection{Functional Tensor-Trains (FTT)}\label{subsec:functional-tensor-trains}
+    \subfile{sections/background/FTT.tex}
+
+    \subsection{Optimization of Function Tensor Trains}\label{subsec:optimization-of-function-tensor-trains}
+    \subfile{sections/background/ftt_opt.tex}
 
     %%%
     \section{Model}\label{sec:proposed-model}
