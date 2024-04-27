@@ -11,8 +11,19 @@
     In this work, we explore the application of fixed, low-rank tensor-train to Denoising Probabilistic Diffusion Models.
     We show the parametric noise can be modeled using Functional Tensor-Trains(FTT).
     We will also provide details on how the model can be trained using Riemannian Optimization algorithm for fixed-rank
-    tensor-trains.
-    The main objective is to develop a more efficient DDPM with respect to memory and training-time.
-    The secondary objective is to conduct a comparative analysis to different FTT optimization methods in the context
-    of DDPM.
+    tensor-trains.\par
+    The main objective is to provide a comparative study different function approximators for the
+    parametric noise $\bm{\epsilon}_{\theta}(\bm{\theta},t)$, which is the core task in DDPMs.
+    We will comparatively study two classes of approximatros: Neural Networks and Functional Tensor-Trains(FTT).
+    The study will focus on comparing different architectures for the approximators along with the corresponding
+    optimization algorithms used to train these architectures.\par
+
+    The study will focus on understanding the convergence of each architecture and each algorithm, given different
+    target distributions.
+    Furthermore, it will try to provide a formal understanding to the senstivity of the convergence
+    to different architectures, optimization algorithms and their parameters.
+
+    The secondary objective is to introduce a FTT-DDPM model with the goal of being more efficient with respect to
+    memory or time complexity.
+
 \end{document}
