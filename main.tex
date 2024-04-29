@@ -8,13 +8,17 @@
 \date{\today}
 % Packages
 \usepackage{natbib}
-\bibliographystyle{alpha}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{xcolor}
 \usepackage{comment}
 \usepackage{bm}
+\usepackage{amssymb}
 \usepackage{subfiles}
+\usepackage{hyperref}
+\usepackage[mathscr]{euscript}
+\usepackage[title]{appendix}
+\bibliographystyle{alpha}
 % Martin comment
 \begin{comment}
     https://uq-berlin.slack.com/archives/D0168AT80RY/p1713873401234819
@@ -37,7 +41,7 @@
     Other Analysis Papers
     Convergence of denoising diffusion models under the manifold hypothesis
     https://openreview.net/pdf?id=MhK5aXo3gB
-    Convergence Analysis for General Probability Flow ODEs of  Diffusion Models in Wasserstein Distances
+    Convergence Analysis for General Probability Flow ODEs of Diffusion Models in Wasserstein Distances
     https://arxiv.org/pdf/2401.17958
 \end{comment}
 
@@ -46,10 +50,16 @@
 \begin{document}
     \maketitle
 
+
     \section{Abstract}\label{sec:abstract}
     \subfile{sections/abstract}
 
     %%%
+    \section{Notion and Preliminaries}\label{sec:notioan-and-preliminarities}
+    \subfile{sections/notations.tex}
+    %%%
+
+
     \section{Background}\label{sec:background}
 
     \subsection{Denoising Diffusion Probabilisitce Models (DDPM)}\label{subsec:ddpm}
@@ -62,6 +72,8 @@
     \subfile{sections/background/ftt_opt.tex}
 
     %%%
+
+
     \section{Model}\label{sec:proposed-model}
 
     \subsection{Architecture}\label{subsec:architecture}
@@ -71,6 +83,8 @@
     \subfile{sections/model/opt.tex}
 
     %%%
+
+
     \section{Experiments}\label{sec:experiments}
 
     \subsection{Plan}\label{subsec:plan}
@@ -90,5 +104,13 @@
 
     \subsection{Results}\label{subsec:results}
     \subfile{sections/experiments/results.tex}
-\bibliography{ref}
+    \bibliography{ref}
+    \appendix
+
+    \begin{appendices}
+        \section{- FTT architecture experimentation}\label{sec:on-ftt-architecture-experimentation}
+
+        \section{- FTT optimization experimentation}\label{sec:on-ftt-optimization-experimentation}
+    \end{appendices}
+
 \end{document}

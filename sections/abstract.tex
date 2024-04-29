@@ -4,26 +4,41 @@
 % Preamble
 \documentclass[11pt]{article}
 
+% Sample Abstracts
+% -- Comparative Analysis Papers --
+% 1. https://arxiv.org/pdf/2311.13471
+% 2. https://arxiv.org/pdf/2307.09809
+% 3. https://arxiv.org/pdf/1904.04326
+
+
 % Packages
 
 % Document
 \begin{document}
-    In this work, we explore the application of fixed, low-rank tensor-train to Denoising Probabilistic Diffusion Models.
-    We show the parametric noise can be modeled using Functional Tensor-Trains(FTT).
-    We will also provide details on how the model can be trained using Riemannian Optimization algorithm for fixed-rank
-    tensor-trains.\par
-    The main objective is to provide a comparative study different function approximators for the
-    parametric noise $\bm{\epsilon}_{\theta}(\bm{\theta},t)$, which is the core task in DDPMs.
-    We will comparatively study two classes of approximatros: Neural Networks and Functional Tensor-Trains(FTT).
-    The study will focus on comparing different architectures for the approximators along with the corresponding
-    optimization algorithms used to train these architectures.\par
+    Score-based Generative Models are one of the recently developed class of Generative Models.
+    Yet, to our knowledge, there is no much work on analyzing the convergence of these models for different classes of density functions.
+    Furthermore, there is no comparative analysis for different architectures of function approximator, along with their corresponding
+    optimizers, which can justify the current model setups.
 
-    The study will focus on understanding the convergence of each architecture and each algorithm, given different
-    target distributions.
-    Furthermore, it will try to provide a formal understanding to the senstivity of the convergence
-    to different architectures, optimization algorithms and their parameters.
+    In this article, we focus on a simplified discrete version of Score-Based Generative Models, called
+    Denoising Diffusion Probabilistic Models(DDPM).
 
-    The secondary objective is to introduce a FTT-DDPM model with the goal of being more efficient with respect to
-    memory or time complexity.
+    The core task in DDPMs is finding the optimal functional approximator for $\bm{\epsilon}_{\theta}(\mathbf{x}(t),t)$
+    where $\bm{\theta}^{*} = argmin_{\bm{\theta}}\mathbb{E}_{t,\mathbf{x}(t),\bm{\epsilon}}\left(  \left\lVert \bm{\epsilon}-\bm{\epsilon}_{\theta}(\mathbf{x}(t),t)\right\lVert_2^2\right)$
+
+
+    In literature, different Neural-Network (NN) architecture like ResNet and UNet are applied along with Gradient
+    Descent as the optimization algorithm.
+
+    In this article, we will study the application of different Functional-Tensor-Trains(FTT) based approximators
+    with Alternating Least Minimization (ALS) and Riemannian Optimization (RO) as the optimization algorithms.
+    The study will compare these approximator to NN-Gradient Descent counterparts.
+    \textbf{The primary goal} is to comprehensively analyze DDPM's convergence and its sensitivity to architecture and
+    optimization parameters.
+    The analysis will include experimentation with toy and real-world densities.
+
+    As an outcome of this analysis, the \textbf{secondary goal} is to introduce a FTT-DDPM model which
+    is more efficient than NN-DDPM counterparts.
+
 
 \end{document}

@@ -69,10 +69,10 @@
     \textcolor{red}{Add loss function derivation}
     \newline
 
-    The loss function for DDPM can be written as:
+    The loss function for DDPM, given a sample $\mathbf{x0} \sim q(\mathbf{x}_0)$ can be written as:
     \begin{equation}
         \begin{aligned}
-            L_{\text {simple }}(\theta) =\mathbb{E}_{t, \mathbf{x}_0,
+            L_{\text {simple }}(\theta) =\mathbb{E}_{t,\mathbf{x}_t \mid \mathbf{x}_0,
             \boldsymbol{\epsilon}}\left[\left\|\boldsymbol{\epsilon}-\boldsymbol{\epsilon}_
             \theta\left(\mathbf{x}_t, t\right)\right\|^2\right]
         \end{aligned}
@@ -90,9 +90,10 @@
         \item Calculate $\bm{\epsilon}_{\theta}(\mathbf{x}_t,t)$
         \item Calculate the Loss as in eq.(\ref{eq:ddpm-loss-simple})
     \end{enumerate}
-    
+
     %%%
-    \subsection{Modeling $\bm{\epsilon}_{\theta}(\mathbf{x}_t,t)$}\label{subsec:modeling-ddpm-prametric-noise}
+
+    \subsection{Modeling $\epsilon_{\theta}(\mathbf{x}_t,t)$}\label{subsec:modeling-ddpm-prametric-noise}
     The core modeling task for Diffusion Models is to, a first design and architecture for a model that approximates
     $\bm{\epsilon}_{\theta}(\mathbf{x}_t,t)$, then develop an optimization algorithm to find the optimal $\bm{\theta}$
     That minimizes the loss in eq.(\ref{eq:ddpm-loss-simple}).
@@ -101,10 +102,49 @@
     Neural Network architecture used for different realizations of Diffusion Models and how they are optimized.
     Also, we will go through the Positional Time Encoding used to embed time into such a model,
 
-    \subsubsection{Positional Time Embedding}
+    \subsubsection{Architecture modeling $\epsilon_{\theta}(\mathbf{x}_t,t)$}
+    In this section we present different Neural Network architectures applied in the literature for modeling
+    $\bm{\epsilon}_{\theta}(\mathbf{x}_t,t)$ \cite{Diffusio93:online,ho2020denoising,WhatareD38:online}.
+
+    %%%
+
+    \subsubsection{Modeling $\epsilon_{\theta}(\mathbf{x}_t,t)$ with ResNets}
+    One of the simple approaches for modeling $\bm{\epsilon}_\bm{\theta}$ is using Res-Net like architecture.
+    The code presented \href{https://github.com/Jmkernes/Diffusion/blob/main/diffusion/ddpm/main.py#L101}{here}, has
+    successfully applied ResNet-like architecture for the density estimation of 2D swissroll dataset \cite{sklearnd99:online}.
+    The equation set describing the applied ResNet model of depth $L$ can be written as follows
+    (in order from left to right in the model implementation)
+    \begin{equation}
+        \begin{aligned}
+            \mathbf{x}_t^{'} &= \mathbf{x}_t + t^{'} \\
+            \mathbf{z}_0 &= \mathbf{A}_1 \mathbf{x}^{'} \quad \text{Dimension expansion} \\
+            \mathbf{u} &= \mathbf{B_2}(\bm{\sigma}(\mathbf{B}_1(\mathbf{z}_{l-1})) \quad l=1,2,\dots,L \quad \text{Non-Linearity}\\
+            \mathbf{z}_l &= \frac{\mathbf{u}-E(\mathbf{u})}{\sqrt {Var(\mathbf{u})+\epsilon}}*\gamma + \beta \quad \text{Normalization Layer } \\
+            \bm{\epsilon}_{\bm{\theta}}(\mathbf{x}_t,t) &=\mathbf{A}_2\mathbf{z}_L \quad \text{Dimension contraction}\\
+        \end{aligned}\label{eq:ddpm-resnet}
+    \end{equation}
+    Where $t^{'}$ is encoded time based on the Positional Encoding function $f:\mathbb{R} \rightarrow \mathbb{R}^{D}$
+    (A detailed explanation for this encoding approach is presented in subsection ( \ref{subsubsec:positional-time-encoding}).
+
+
+    The parameters vector can be written as $\bm{\theta}=[vec(\mathbf{A}_1),vec(\mathbf{A}_2),vec(\mathbf{B}_1),vec(\mathbf{B}_2)),\gamma,\beta]$
+    where $\mathbf{z}_l \in \mathbb{R}^{D_1},\mathbf{A}_1 \in \mathbb{R}^{D \times D_1},\mathbf{A}_2 \in \mathbb{R}^{D_1 \times D},
+    \mathbf{B}_1 \in \mathbb{R}^{D_1 \times D_2},\mathbf{B}_2 \in \mathbb{R}^{D_2 \times D_1}$.
+
+
+    A more sophisticated model for approximating the parametric noise $\bm{\epsilon}_{\bm{\theta}}(\mathbf{x}_t,t)$ is
+    U-Net, which is a Neural Network architecture composed of several ResNet blocks in U shape, and designed
+    especially for image segmentation problems\cite{ronneberger2015unet}.
+    UNet also applies Positional Encoding for time conditioning \cite{WhatareD38:online}
+    This architecture has been used in DDPM \cite{ho2020denoising} and the more generic counterpart of DDPMs: the score-based
+    generative models \cite{song2020generative,song2021scorebased,Generati50:online}
+    In the next subsection, we provide more details about this architecture.
+
+    \subsubsection{Modeling $\epsilon_{\theta}(\mathbf{x}_t,t)$ with U-Net}
+    \textcolor{red}{TBD: \cite{ho2020denoising,sohldickstein2015deep_diffusion_model_main_paper}}
+
+    \subsubsection{Positional Time Embedding}\label{subsubsec:positional-time-encoding}
     \textcolor{red}{TBD : \cite{Demystif18:online,AGentleI11:online,vaswani2023attention}}
 
-    \subsubsection{ResNet and UNet for modeling $\bm{\epsilon}_{\theta}(\mathbf{x}_t,t)$}
-    \textcolor{red}{TBD: \cite{ho2020denoising,sohldickstein2015deep_diffusion_model_main_paper}}
 
 \end{document}
