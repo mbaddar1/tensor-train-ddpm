@@ -73,24 +73,54 @@
         \end{align}
         \label{eq:ftt-ddpm-noise-model}
     \end{subequations}
-    Where $\mathbf{u}$ is the time-embedded image for latent variable $\mathbf{x}(t)$ by adding it to the Positional Encoding time.
+    Where $\mathbf{u}$ is the time-embedded image for latent variable $\mathbf{x}(t)$ by adding it to the positional-encoded time
     $\mathbf{t}^{\prime}$.
+    Eq(\ref{eq:ftt-ddpm-noise-model}) is formulated by substitution $\mathbf{x}$ with $\mathbf{u}(t)$ in \eqref{eq:ftt}.
 
 
-    We apply dimensional-decomposition for both input $\mathbf{u}(t)$ and output $\mathbf{y}(t)$.
-    For input, we apply a tensor-valued basis function $\bm{\Phi}(\mathbf{u}(t))$ to introduce non-linearity in the model.
-    The tensor basis $\bm{\Phi}(\mathbf{u}(t))$ is decomposed to the tensor product of a set of rank-1 basis function:
-    \begin{align*}
-        \bm{\Phi}(\mathbf{u}(t)) &= \bm{\phi_1}\otimes(u_1(t)) \otimes \bm{\phi_2}(u_2(t)) \dots \otimes \bm{\phi_D}(u_D(t))
-    \end{align*}
-    Where $\bm{\Phi}(\mathbf{u}(t)) \in : \mathbb{R}^{D} \rightarrow \mathbb{R}^{m_1 \times m_2 \dots \times m_D}$
-    and $\bm{\phi}_i(u_i) \in \mathbb{R} \rightarrow \mathbb{R}^{m_i}$.
+%    We apply dimensional-decomposition for both input $\mathbf{u}(t)$ and output $\mathbf{y}(t)$.
+%    For input, we apply a tensor-valued basis function $\bm{\Phi}(\mathbf{u}(t))$ to introduce non-linearity in the model.
+%    The tensor basis $\bm{\Phi}(\mathbf{u}(t))$ is decomposed to the tensor product of a set of rank-1 basis function:
+%    \begin{align*}
+%        \bm{\Phi}(\mathbf{u}(t)) &= \bm{\phi_1}\otimes(u_1(t)) \otimes \bm{\phi_2}(u_2(t)) \dots \otimes \bm{\phi_D}(u_D(t))
+%    \end{align*}
+%    Where $\bm{\Phi}(\mathbf{u}(t)) \in : \mathbb{R}^{D} \rightarrow \mathbb{R}^{m_1 \times m_2 \dots \times m_D}$
+%    and $\bm{\phi}_i(u_i) \in \mathbb{R} \rightarrow \mathbb{R}^{m_i}$.
+
+    %%%%
 
     \subsubsection{Basis Functions}
     Many classes of basis functions have been applied to FTT-approximations like B-Splines, Fourier Series,
     \cite{novikov2022tensortrain} Legendre Polynomials\cite{sommer2024generative}.
-    As the proposed architecture is based on the TTDE model in \cite{novikov2022tensortrain},
-    we focus on B-Splines basis function.
+    Initially, we focus on applying two classes of basis functions: Legendre Polynomials and B-Splines.
+    The rationale behind this selection is that both have been successfully applied in the domain of generative modeling
+    \cite{novikov2022tensortrain,sommer2024generative}.
+
+    %
+
+    \paragraph{Legendre Polynomials}
+    The Bonnel's recursion formula for Legendre-Polynomials can be written as
+    \begin{equation}
+        \label{eq:legendre-poly-recursion}
+        \begin{aligned}
+            P_{k}(x)&=
+            \begin{aligned}
+                \begin{cases}
+                    x^{k} & k=0,1 \\
+                    \frac{(2 k+1)x P_{k-1}(x)-k P_{k-2}(x)}{(k + 1)} & k=2,3,\dots \\
+                \end{cases}
+            \end{aligned}
+        \end{aligned}
+    \end{equation}
+    Accordingly the basis function $\bm{\phi}(\mathbf{u}_i(t))$ can be defined as
+    \begin{equation}
+        \label{eq:ftt-basis-legendre-polynomials}
+        \begin{aligned}
+            \bm{\phi}_i(u_i(t))&=[\phi_i^k(u_i(t))]_{k=0}^{m_i-1} \\
+            \phi_i^k(u_i(t)) &= P_{k}(u_i(t))
+        \end{aligned}
+    \end{equation}
+    %
 
     \paragraph{B-Splines Basis Function} A B-spline function has two parameters: order $p$ and number of knots $K$.
     The function at $B(x_d;k,p) \in \mathbb{R} \rightarrow \mathbb{R}$ each knot with index $k=1,2,\dots,K$can be written as:
@@ -121,7 +151,7 @@
         \label{eq:b-splines-basis-ftt}
         \begin{aligned}
             \bm{\phi}_i(u_i) &= [\phi_i^k(u_i)]_{k=1}^{m_i} \quad \bm{\phi}_i(u_i) : \mathbb{R} \rightarrow
-                \mathbb{R}^{m_i},\phi_i^k(u_i) : \mathbb{R} \rightarrow \mathbb{R}\\
+            \mathbb{R}^{m_i},\phi_i^k(u_i) : \mathbb{R} \rightarrow \mathbb{R}\\
             \phi_i^k(u_i) &= B(u_i;k,p)\\
             B(u_i;k,0)&=
             \begin

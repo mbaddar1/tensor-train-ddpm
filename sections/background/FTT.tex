@@ -8,8 +8,33 @@
 
 % Document
 \begin{document}
-    In this section and overview of Functional Tensor Trains is introduced.
-    The details of how tensor-trains can approximate a given function, along with
-    different optimization algorithms, will be illustrated
-    \textcolor{red}{TBD : Add details}
+    Let $\mathbf{y}=\mathcal{f}(\mathbf{x}) \quad \mathbf{f}:\mathbb{R}^{D_x} \rightarrow \mathbb{R}^{D_y}$
+    where $f$ is a vector-valued function\cite{Calculus40:online} that can be written as:
+    \begin{equation}
+        \label{eq:ftt-overall-formulation}
+        (y_1,y_2,\dots,y_{D_y}) = \mathbf{f}(\mathbf{x}) = (f^1(\mathbf{x}),f^2(\mathbf{x}),\dots,f^j(\mathbf{x}),\dots,f^{D_y}(\mathbf{x}))
+    \end{equation}
+    And for each $y^j \quad j=1,2,\dots,D_y$, the component function \cite{Calculus40:online}
+    $f^j(\mathbf{x})=f(x_1,\dots,x_i,\dots,x_{D_x}): \mathbb{R}^{D_x} \rightarrow \mathbb{R} $
+    can be modeled as a FTT, which can be formulated as:
+
+    \begin{equation}
+        \label{eq:ftt}
+        \begin{aligned}
+            f^j(\mathbf{x}) &= \mathbf{A}\Phi(\mathbf{x})\\
+            &=\sum_{k_1,k_2,\dots k_{D_x}}^{m_1,\dots,m_i,\dots,m_{D_x}}G_1(.,k_1,.)\dots G_i(.,k_i,.) \dots G_{D_x}(.,k_{D_x},.)\bm{\phi}_1(x_1)...\bm{\phi}_i(x_i)...\bm{\phi}_{D_x}(x_{D_x})
+        \end{aligned}
+    \end{equation}
+    Where
+    \begin{align*}
+        \mathbf{A},\bm{\Phi} &\in \mathbb{R}^{m_1,\dots,m_{i},\dots,\m_{D_x}} \\
+        G_i &\in \mathbb{R}^{r_{i-1} \times m_i \times r_i}\\
+        r_{0}&=r_{D_x}=1
+    \end{align*}
+    And the tensor-valued basis function $\Phi(\mathbf{x})$ is modeled by dimensional decomposition as the tensor-product
+    of a set of rank-1 basis functions
+    \begin{equation}
+        \label{eq:ftt-basis-fn-decomp}
+            \Phi(\mathbf{x}) = \bigotimes_{i=1}^{D_x} \bm{\phi}_i(x_i)
+    \end{equation}
 \end{document}
