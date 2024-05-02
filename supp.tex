@@ -1,0 +1,108 @@
+%! Author = mbaddar
+%! Date = 5/2/24
+
+% Preamble
+\documentclass[11pt]{article}
+
+% Packages
+\usepackage{amsmath}
+
+% Document
+\begin{document}
+    This document will contain all the supplementary material
+
+
+    \section{Appendices}\label{sec:appendices}
+
+
+    \section{Complete Work Plan}\label{sec:complete-work-plan}
+    Main plan, backup one and others.
+
+
+    \section{Complete Set of experiments}\label{sec:complete-set-of-experiments}
+    All experiments: the intermediate, failed and successful ones.
+
+
+    Experiments with Architecture and Optimization
+    %%Overview
+    % The main objective is to provide comprehensive analysis between FTT-DDPM and NN-DDPM (arch and opt algo)
+    % The secondary objective is to make FTT-DDPM comptetent to NN-DDPM
+
+    % For secondary Objective we will try singla layer TT and multiple Layers FTT
+    %a. The single layer proposed here
+    %b. The multiple layers DNN + RO https://arxiv.org/pdf/2203.06031
+    % Plan-B is to tune the NN-DDPM in arch or opt algorithm
+    \begin{enumerate}
+        \item Isolation experiments for parametric noise model
+        \item Use a ResNet, Unet for training such data (for validation)
+        \item Apply TT opt to isolated data coming from different distributions (the effect of distribution on tt opt)
+        \item The effect of rank and number of cores,
+        \item The effect of opt algorithm parameters
+        \item Drawing a loss landscape for the original DDPM and TT ones
+        \item Analyzing the convergence of each optimization method
+        \item Analyzing the number of computations with each method
+        \item Analyze the memory footprint for each
+        \item As a plan B , if the TT-DDPM model is not better.
+        This work can result in a comparative analysis to different TT-OPT methods applied to the context of Diffusion Models
+        examples : https://arxiv.org/pdf/2404.16154 , https://arxiv.org/pdf/2404.06455 , https://arxiv.org/pdf/2212.10797
+
+    \end{enumerate}
+    \textbf{convergence analysis examples}
+    https://arxiv.org/abs/2208.05314
+    https://openreview.net/pdf?id=wLe1bG93yc
+    https://www.igpm.rwth-aachen.de/Download/reports/pdf/IGPM423.pdf
+    https://www.jstor.org/stable/43901583
+    https://youtu.be/4WDedaz_TV4?si=ksqwnfZMYNF_U595
+    https://www.cis.upenn.edu/~cis6100/Ring-Wirth-optim-Riemann.pdf
+    \textbf{https://arxiv.org/abs/1712.09913}
+
+    \paragraph{Riemannian Optimiation (Riemmanian Gradient Descent )} , Why ?
+    %%Overview
+    % The main objective is to provide comprehensive analysis between FTT-DDPM and NN-DDPM (arch and opt algo)
+    % The secondary objective is to make FTT-DDPM comptetent to NN-DDPM
+
+    % For secondary Objective we will try singla layer TT and multiple Layers FTT
+    %a. The single layer proposed here
+    %b. The multiple layers DNN + RO https://arxiv.org/pdf/2203.06031
+    % Plan-B is to tune the NN-DDPM in arch or opt algorithm
+    \begin{enumerate}
+        \item Isolation experiments for parametric noise model
+        \item Use a ResNet, Unet for training such data (for validation)
+        \item Apply TT opt to isolated data coming from different distributions (the effect of distribution on tt opt)
+        \item The effect of rank and number of cores,
+        \item The effect of opt algorithm parameters
+        \item Drawing a loss landscape for the original DDPM and TT ones
+        \item Analyzing the convergence of each optimization method
+        \item Analyzing the number of computations with each method
+        \item Analyze the memory footprint for each
+        \item As a plan B , if the TT-DDPM model is not better.
+        This work can result in a comparative analysis to different TT-OPT methods applied to the context of Diffusion Models
+        examples : https://arxiv.org/pdf/2404.16154 , https://arxiv.org/pdf/2404.06455 , https://arxiv.org/pdf/2212.10797
+
+    \end{enumerate}
+    \textbf{convergence analysis examples}
+    https://arxiv.org/abs/2208.05314
+    https://openreview.net/pdf?id=wLe1bG93yc
+    https://www.igpm.rwth-aachen.de/Download/reports/pdf/IGPM423.pdf
+    https://www.jstor.org/stable/43901583
+    https://youtu.be/4WDedaz_TV4?si=ksqwnfZMYNF_U595
+    https://www.cis.upenn.edu/~cis6100/Ring-Wirth-optim-Riemann.pdf
+    \textbf{https://arxiv.org/abs/1712.09913}
+
+
+    \paragraph{Optimization}
+    Hopefully we can compare the four methods:
+    \begin{enumerate}
+        \item \textbf{ALS}  https://epubs.siam.org/doi/10.1137/100818893
+        \item \textbf{Gradient Descent for TT} Gradient-based optimization for regression in the functional tensor-train format
+        \item \textbf{Riemannian Optimization and Riemannian Gradient Descent (RGD)}
+        https://arxiv.org/abs/2103.14974
+        https://arxiv.org/pdf/2203.06031
+        \item \textbf{DMRG}
+        https://tensornetwork.org/mps/algorithms/dmrg/
+        https://www.degruyter.com/document/doi/10.2478/cmam-2011-0021/html
+        https://arxiv.org/pdf/1605.05775
+    \end{enumerate}
+
+
+\end{document}

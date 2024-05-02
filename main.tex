@@ -3,7 +3,7 @@
 
 % Preamble
 \documentclass[11pt]{article}
-\title{Tensor-Train Diffusion Models }
+\title{Tensor-Train Diffusion Models (\textcolor{red}{Work-In-Progress})}
 \author{M. Baddar , M. Eigel}
 \date{\today}
 % Packages
@@ -19,6 +19,7 @@
 \usepackage[mathscr]{euscript}
 \usepackage[title]{appendix}
 \bibliographystyle{alpha}
+\usepackage{cleveref}
 % Martin comment
 \begin{comment}
     https://uq-berlin.slack.com/archives/D0168AT80RY/p1713873401234819
@@ -55,6 +56,8 @@
     \subfile{sections/abstract}
 
     %%%
+
+
     \section{Notion and Preliminaries}\label{sec:notioan-and-preliminarities}
     \subfile{sections/notations.tex}
     %%%
@@ -68,49 +71,25 @@
     \subsection{Functional Tensor-Trains (FTT)}\label{subsec:functional-tensor-trains}
     \subfile{sections/background/FTT.tex}
 
-    \subsection{Optimization of Function Tensor Trains}\label{subsec:optimization-of-function-tensor-trains}
-    \subfile{sections/background/ftt_opt.tex}
-
     %%%
 
 
-    \section{Model}\label{sec:proposed-model}
+    \section{FTT-DDPM Model}\label{sec:proposed-model}
+    In this section, we present the architecture and the optimization algorithm for the proposed FTT ansatz.
 
     \subsection{Architecture}\label{subsec:architecture}
-    \subfile{sections/model/arch.tex}
+    \subfile{sections/ftt_ddpm_model/arch.tex}
 
     \subsection{Optimization}\label{subsec:optimization}
-    \subfile{sections/model/opt.tex}
+    \subfile{sections/ftt_ddpm_model/opt.tex}
 
     %%%
 
 
     \section{Experiments}\label{sec:experiments}
+    \subfile{sections/experiments/experiments.tex}
 
-    \subsection{Plan}\label{subsec:plan}
-    \subfile{sections/experiments/plan.tex}
 
-    \subsection{Analysis of Gradient Descent Optimization with Neural Networks Model}
-    \label{subsec:analysis-of-gradient-descent-optimization-with-neural-networks-model}
-
-    \subsection{Optimization with Gradient Descent for Tensor-Train Model}\label{subsec:optimization-with-gradient-descent}
-    \subfile{sections/experiments/tt_gd.tex}
-
-    \subsection{Optimization with Alternating Linear Scheme for Tensor-Train Model}\label{subsec:optimization-with-alternating-linear-scheme}
-    \subfile{sections/experiments/tt_als.tex}
-
-    \subsection{Optimization with Riemannian Gradient Descent for Tensor-Train Model}\label{subsec:optimization-with-riemannian-gradient-descent}
-    \subfile{sections/experiments/tt_ro.tex}
-
-    \subsection{Results}\label{subsec:results}
-    \subfile{sections/experiments/results.tex}
     \bibliography{ref}
     \appendix
-
-    \begin{appendices}
-        \section{- FTT architecture experimentation}\label{sec:on-ftt-architecture-experimentation}
-
-        \section{- FTT optimization experimentation}\label{sec:on-ftt-optimization-experimentation}
-    \end{appendices}
-
 \end{document}

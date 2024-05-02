@@ -5,36 +5,50 @@
 \documentclass[11pt]{article}
 
 % Packages
-
+:.
 % Document
 \begin{document}
-    Let $\mathbf{y}=\mathcal{f}(\mathbf{x}) \quad \mathbf{f}:\mathbb{R}^{D_x} \rightarrow \mathbb{R}^{D_y}$
-    where $f$ is a vector-valued function\cite{Calculus40:online} that can be written as:
+    Let $\mathbf{y}=\mathbf{h}(\mathbf{x}) $ be a vector-valued function where \cite{Calculus40:online}  $ \mathbf{h}:\mathbb{R}^{D_x} \rightarrow \mathbb{R}^{D_y}$.
+    A tensor-train-based ansatz $\mathbf{f} \approx \mathbf{h}$ can be formulated as:
     \begin{equation}
         \label{eq:ftt-overall-formulation}
-        (y_1,y_2,\dots,y_{D_y}) = \mathbf{f}(\mathbf{x}) = (f^1(\mathbf{x}),f^2(\mathbf{x}),\dots,f^j(\mathbf{x}),\dots,f^{D_y}(\mathbf{x}))
+        (y_1,y_2,\dots,y_{j},y_{D_y}) = \mathbf{f}(\mathbf{x}) = (f_1(\mathbf{x}),f_2(\mathbf{x}),\dots,f_j(\mathbf{x}),\dots,f_{D_y}(\mathbf{x}))
     \end{equation}
-    And for each $y^j \quad j=1,2,\dots,D_y$, the component function \cite{Calculus40:online}
-    $f^j(\mathbf{x})=f(x_1,\dots,x_i,\dots,x_{D_x}): \mathbb{R}^{D_x} \rightarrow \mathbb{R} $
-    can be modeled as a FTT, which can be formulated as:
+    And for each $y_j \quad j=1,2,\dots,D_y$, the component function \cite{Calculus40:online}
+    $f_j(\mathbf{x})=f_j(x_1,\dots,x_i,\dots,x_{D_x}): \mathbb{R}^{D_x} \rightarrow \mathbb{R} $
+    can be modeled as a FTT of order $D_x$, which can be formulated as:
 
-    \begin{equation}
+
+    \begin{subequations}
         \label{eq:ftt}
-        \begin{aligned}
-            f^j(\mathbf{x}) &= \mathbf{A}\Phi(\mathbf{x})\\
-            &=\sum_{k_1,k_2,\dots k_{D_x}}^{m_1,\dots,m_i,\dots,m_{D_x}}G_1(.,k_1,.)\dots G_i(.,k_i,.) \dots G_{D_x}(.,k_{D_x},.)\bm{\phi}_1(x_1)...\bm{\phi}_i(x_i)...\bm{\phi}_{D_x}(x_{D_x})
-        \end{aligned}
-    \end{equation}
+        \begin{align}
+            f(\mathbf{x}) &= \bm{A}\Phi(\mathbf{x}) \label{ftt1}\\
+            \bm{A}[\bm{k}] &= \sum_{\bm{s}}^{\bm{r}} G_1[s_0,k_1, s_1]\dots G_i[s_{i-1},k_i, s_i] \dots G_{D_x}[s_{D_x-1},k_D, s_{D_x}]\\
+            \bm{\Phi}(\mathbf{x})&=\bigotimes_{i=1}^{D_x} \bm{\phi}_i(x_i)
+        \end{align}
+    \end{subequations}
     Where
     \begin{align*}
-        \mathbf{A},\bm{\Phi} &\in \mathbb{R}^{m_1,\dots,m_{i},\dots,\m_{D_x}} \\
+        \mathbf{A},\bm{\Phi} &\in \mathbb{R}^{m_1 \times \dots \times m_{i}\times \dots \times m_{D_x}} \\
+        i&=1,2,\dots,D \textit{  Index over Tensor-Train dimensions}\\
+        \bm{k}&=(k_1,k_2,\dots,k_i,\dots,k_{D_x}) \quad k_i=1,2,\dots,m_i \textit{  Index over Tensor-Train elements}\\
+        \bm{r}&=(r_0,r_1,\dots,r_i,\dots,r_{D_x}) \textit{  Tensor train operator ranks}\\
+        r_{0}&=r_{D_x}=1 \\
+        \bm{s}&=(s_0,s_1,\dots,s_i,\dots,s_{D_x}) \textit{  Index over the ranks}\\
         G_i &\in \mathbb{R}^{r_{i-1} \times m_i \times r_i}\\
-        r_{0}&=r_{D_x}=1
     \end{align*}
     And the tensor-valued basis function $\Phi(\mathbf{x})$ is modeled by dimensional decomposition as the tensor-product
     of a set of rank-1 basis functions
     \begin{equation}
         \label{eq:ftt-basis-fn-decomp}
-            \Phi(\mathbf{x}) = \bigotimes_{i=1}^{D_x} \bm{\phi}_i(x_i)
+        \Phi(\mathbf{x}) = \bigotimes_{i=1}^{D_x} \bm{\phi}_i(x_i)
     \end{equation}
+    Where $\bm{x}=[x_i]_{i=1}^{D_x}$ and $\bm{\phi}_i(x_i) : \mathbb{R}\rightarrow\mathbb{R}^{m_i}$.
+    \par
+    Finally, the contraction algorithm in (\ref{eq:ftt}a) is:
+    \begin{enumerate}
+        \item Calculate $C_i(x_i) = \sum_{k_i=1}^{m_i} G_i(s_{i-1},k_i,s_i) \bm{\phi}(x_i)$ for all $i=1,2\dots,D$.
+        Note that  $C_i \in \mathbb{R}^{r_{i-1} \times r_i}$
+        \item $f(\mathbf{x}) = \sum_{i=1}^{D}\sum_{s_{i-1},s_i}^{r_{i-1},r_i} C(x_i)$
+    \end{enumerate}
 \end{document}

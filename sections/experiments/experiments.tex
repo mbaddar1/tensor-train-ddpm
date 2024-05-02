@@ -1,0 +1,65 @@
+%! Author = mbaddar
+%! Date = 5/2/24
+
+% Preamble
+\documentclass[11pt]{article}
+
+% Packages
+
+% Document
+\begin{document}
+    In this section, we provide the experimentation details and results for optimizing the model in~\eqref{eq:ftt-ddpm-noise-model}
+    by applying different optimization methods in the subsection \ref{subsec:optimization}.
+
+    %%%
+
+    \subsection{Datasets}\label{subsec:datasets}
+    We apply the proposed method to a set of toy and real world datasets (as in \cite{novikov2022tensortrain}).
+
+    \paragraph{Toy Datasets}
+    \begin{itemize}
+        \item \textbf{Multivariate Gaussian Distribution}:
+        Each target sample $y$ can be written as $\mathbf{y} \sim \mathcal{N}(\bm{\mu},\bm{\Sigma})$ where $\mathbf{y} \in \mathbb{R}^{D}$
+        \item \textbf{Multivariate Gaussian Mixtures}: \cite{Ch92Mixt66:online}
+        p(\boldsymbol{y})=\sum_{k=1}^K \boldsymbol{\pi}_k N\left(\boldsymbol{y} \mid \boldsymbol{\mu}_k, \boldsymbol{\Sigma}_k\right)
+        where $ 0 \leq \boldsymbol{\pi}_k \leq 1$ , $\sum_{i=1}^{k} \boldsymbol{\pi}_k =1$ , $\boldsymbole{y} \in \mathbb{R}$
+        \item  sklearn moon(2D), swissroll(2D and 3D) and circles(2D) \cite{APIRefer67:online}
+        \item sklearn digits dataset \cite{sklearnd40:online}
+    \end{itemize}
+
+    \paragraph{Real-World Datasets}
+    As our work is based on \cite{novikov2022tensortrain}, we use the same dataset which is basically the same dataset
+    used in \cite{papamakarios2018masked}.
+    All these datasets are based on UCI-data repository \cite{Datasets50:online}
+    \begin{itemize}
+        \item \textbf{POWER} : Individual Household Electric Power Consumption \cite{misc_individual_household_electric_power_consumption_235}
+        After postprocessing the data, we work with a 6-dimensional reduced version of the dataset
+        \item \textbf{GAS} : The data set contains the recordings of 16 chemical sensors exposed to two dynamic gas mixtures at varying concentrations
+        After removing correlated attributes, the reduced version will have 8-dimensions
+        \item \textbf{HEPMASS} : One of the famous , non-image datasets used for benchmarking generative models,
+        from the domain of physics \cite{UCIHEPMA22:online,bigdeli2020learning}
+    \end{itemize}
+    %%%
+
+    \subsection{Quality Measures}\label{subsec:quality-measures}
+    The main metric we will use is Wasserstein-distance \cite{Panaretos_2019}:
+    \begin{equation}
+        \label{eq:wasserstein-distance}
+        W_p(\pi, \nu)=\inf _{\substack{\mathbf{x} \sim \pi \\ \mathbf{y} \sim \nu}}\left(\mathbb{E}\|\mathbf{x}-\mathbf{y}\|^p\right)^{1 / p}, \quad p \geq 1,
+    \end{equation}
+    where the infimum is taken over all pairs of d-dimensional random vectors $\mathbf{x},\mathbf{y} \in \mathbb{R}^D$ are marginally
+    distributed as $\pi$ and $\nu$, respectively.
+    For convenience, the terms $W_p(\pi, \nu)$ and $W_p(\mathbf{x}, \mathbf{y})$ will be used interchangeably.
+    Also, the term \textit{Wasserstein-distance} is called \textit{Optimal-Transport} in literature\cite{Optpdf94:online}.
+
+
+    The calculation of Wasserstein-distance is not feasible for higher dimensional data.
+    Accordingly, we apply the \textit{sinkhorn} algorithm \cite{NIPS2013_af21d0c9} to get a regularized approximation for Wasserstein-Distance.
+    \textcolor{red}{TBD : Add more details about the sinkhorn algorithm}.
+
+    There are many existing implementations for sinkhorn algorithm in python like \textit{POT}\cite{JMLR:v22:20-451,POTPytho87:online},
+    and \textit{GemLoss} \cite{Geometri81:online} libraries.
+
+%    https://www.kernel-operations.io/geomloss/_auto_examples/sinkhorn_multiscale/plot_optimal_transport_cluster.html
+    %%%
+\end{document}

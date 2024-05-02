@@ -10,26 +10,27 @@
 \begin{document}
 
 
-    For consistency, we present the terminology and notations to be used in this article.
+    We present the terminology and notations to be used in this article.
 
     \subsection{Generative Model Notations}\label{subsec:generative-model-notations}
 
     The vector $\mathbf{x}_0 \in \mathbb{R}^{D}$ denotes a single sample out of the training samples $X_0 \in \mathbb{R}^{N \times D}$,
     where $D$ is the data-dimension, $N$ is the number of training samples.
 
-    Statistically, the vector $\mathbf{x}_0$ is a random variable whose actual density $p_(\mathbf{x}_0)$
+    Statistically, the vector $\mathbf{x}_0$ is a random variable whose actual density $p(\mathbf{x}_0)$
     is the target density we want to estimate.
     The generative modeling task is about search for the optimal parametric density $q_{\theta} \subset \mathcal{Q}$
-    such that $q_{\theta}(\mathbf{x}_0) \approx \p(\mathbf{x}_0)$
+    such that $q_{\theta}(\mathbf{x}_0) \approx p(\mathbf{x}_0)$
 
 
     As we focus on discrete non-stationary DDPM models,the term $t$ denotes a discrete finite non-negative time
-    point in the diffusion process $t \in \mathbb{Z}^{*}$ and $0 \leq t \leq T$, where T is the number of time points in the forward and reverse diffusion process.
-
+    point in the diffusion process such that $t \in \mathbb{Z}^{*}$ and $0 \leq t \leq T$, where T is the number of
+    time points in the forward and reverse diffusion process.
+    %%%
     \subsection{Tensor Notations and Terminology}\label{subsec:tensor-notations-and-terminology}
-    Tensor order is the number of orders in that tensor.
+    Tensor \textit{order} is the number of dimensions in that tensor.
     A scaler (order-0 tensor) is denoted by a lowercase letter, e.g. $a$,while a vector (order-1 tensors) is denoted
-    by a lowercase boldface letter, e.g. $\mathbf{a}$
+    by a lowercase boldface letter, e.g. $\mathbf{a}$.
     An uppercase letter, denotes a matrix (order-2 tensors) e.g. $A$.
     A higher order tensor ($order-m \text{ tensor}\text{ with }m \geq 3$) is denoted by uppercase boldface letters $\mathbf{A}$.
 

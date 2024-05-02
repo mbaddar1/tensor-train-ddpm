@@ -15,30 +15,22 @@
 
 % Document
 \begin{document}
-    Score-based Generative Models are one of the recently developed class of Generative Models.
-    Yet, to our knowledge, there is no much work on analyzing the convergence of these models for different classes of density functions.
-    Furthermore, there is no comparative analysis for different architectures of function approximator, along with their corresponding
-    optimizers, which can justify the current model setups.
+    Denoising Diffusion Probabilistic Models(DDPMs) are one of the recently developed class of Generative Models.
+    Yet to our knowledge, there is no comparative analysis for different classes of the applied function approximator,
+    along with their optimizers, which can justify the current model setups.
+    Furthermore, all experimentation work has been exclusively focusing on image-generation, neglecting high-dimensional
+    data from other domains.
 
-    In this article, we focus on a simplified discrete version of Score-Based Generative Models, called
-    Denoising Diffusion Probabilistic Models(DDPM).
-
-    The core task in DDPMs is finding the optimal functional approximator for $\bm{\epsilon}_{\theta}(\mathbf{x}(t),t)$
-    where $\bm{\theta}^{*} = argmin_{\bm{\theta}}\mathbb{E}_{t,\mathbf{x}(t),\bm{\epsilon}}\left(  \left\lVert \bm{\epsilon}-\bm{\epsilon}_{\theta}(\mathbf{x}(t),t)\right\lVert_2^2\right)$
-
-
-    In literature, different Neural-Network (NN) architecture like ResNet and UNet are applied along with Gradient
-    Descent as the optimization algorithm.
+%    The core task in DDPMs is finding the optimal functional approximator for $\bm{\epsilon}_{\theta}(\mathbf{x}(t),t)$
+%    where $\bm{\theta}^{*} = argmin_{\bm{\theta}}\mathbb{E}_{t,\mathbf{x}(t),\bm{\epsilon}}\left(  \left\lVert \bm{\epsilon}-\bm{\epsilon}_{\theta}(\mathbf{x}(t),t)\right\lVert_2^2\right)$
 
     In this article, we will study the application of different Functional-Tensor-Trains(FTT) based approximators
     with Alternating Least Minimization (ALS) and Riemannian Optimization (RO) as the optimization algorithms.
-    The study will compare these approximator to NN-Gradient Descent counterparts.
-    \textbf{The primary goal} is to comprehensively analyze DDPM's convergence and its sensitivity to architecture and
-    optimization parameters.
-    The analysis will include experimentation with toy and real-world densities.
+    The study will compare these approximator to Neural Networks(NN) approximators optimized by Stochastic Gradient Descent(SGD).
 
-    As an outcome of this analysis, the \textbf{secondary goal} is to introduce a FTT-DDPM model which
-    is more efficient than NN-DDPM counterparts.
 
+    \textbf{The first goal} is to comprehensively analyze DDPM's convergence and quality's sensitivity to architecture and
+    optimization parameters over different toy and real world high-dimensional datasets from different domains.
+    As a result, \textbf{the second goal} is to introduce a FTT-DDPM model which is more efficient than NN-DDPM counterparts.
 
 \end{document}
